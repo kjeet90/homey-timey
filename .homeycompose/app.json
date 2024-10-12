@@ -1,0 +1,56 @@
+{
+  "id": "no.kjeet90.timey",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Timey",
+    "no": "Timey"
+  },
+  "description": {
+    "en": "Timey - Use text variables in time flow cards with a 24-hour format: HH:mm",
+    "no": "Timey - Bruk tekstvariabler i tids-flower med 24-timers format: HH:mm"
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Kjetil Haugland",
+    "email": "hauglandkjetil@gmail.com"
+  },
+  "brandColor": "#81b2b7",
+  "tags": {
+    "en": [
+      "clock",
+      "time",
+      "variable",
+      "tag"
+    ],
+    "no": [
+      "klokke",
+      "tid",
+      "variabel",
+      "tag"
+    ]
+  },
+  "source": "https://github.com/kjeet90/homey-timey",
+  "bugs": {
+    "url": "https://github.com/kjeet90/homey-timey/issues"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "kjetilhaugland"
+      }
+    }
+  }
+}

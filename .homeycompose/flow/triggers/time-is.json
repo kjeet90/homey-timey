@@ -1,0 +1,23 @@
+{
+  "title": {
+    "en": "The time is",
+    "no": "Klokken er"
+  },
+  "titleFormatted": {
+    "en": "The time is [[Time]]",
+    "no": "Klokken er [[Time]]"
+  },
+  "hint": {
+    "en": "24-hour format HH:mm",
+    "no": "24-timers format HH:mm"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "Time",
+      "placeholder": {
+        "en": "12:00"
+      }
+    }
+  ]
+}

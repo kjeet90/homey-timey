@@ -1,0 +1,23 @@
+{
+  "title": {
+    "en": "The time is earlier than",
+    "no": "Klokken er tidligere enn"
+  },
+  "titleFormatted": {
+    "en": "The time is !{{earlier|later}} than [[Time]]",
+    "no": "Klokken er !{{tidligere|senere}} enn [[Time]]"
+  },
+  "hint": {
+    "en": "24-hour format HH:mm",
+    "no": "24-timers format HH:mm"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "Time",
+      "placeholder": {
+        "en": "12:00"
+      }
+    }
+  ]
+}

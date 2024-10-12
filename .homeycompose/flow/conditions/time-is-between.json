@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en": "The time is between",
+    "no": "Klokken er mellom"
+  },
+  "titleFormatted": {
+    "en": "The time !{{is|isn't}} between [[Time1]] and [[Time2]]",
+    "no": "Klokken !{{er|er ikke}} mellom [[Time1]] og [[Time2]]"
+  },
+  "hint": {
+    "en": "If the second time is earlier than the first time, it's considered the next day. 24-hour format HH:mm",
+    "no": "Hvis det andre tidspunktet er tidligere enn det første tidspunktet, anses det å være neste dag"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "Time1",
+      "placeholder": {
+        "en": "12:00"
+      }
+    },
+    {
+      "type": "text",
+      "name": "Time2",
+      "placeholder": {
+        "en": "13:00"
+      }
+    }
+  ]
+}
