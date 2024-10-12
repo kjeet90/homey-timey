@@ -10,7 +10,7 @@ class Timey extends Homey.App {
   timeZone: string = '';
   formatter: Intl.DateTimeFormat | null = null;
 
-  HHmm = new RegExp(/^([0-9]{1,2}):([0-9]{2})$/);
+  HHmm = new RegExp(/^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$/);
 
   /**
    * onInit is called when the app is initialized.
