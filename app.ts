@@ -1,7 +1,7 @@
 'use strict';
 
 import Homey from 'homey';
-import { timeToMinutes, isCurrentTimeBetween, isEarlierThan, isLaterThan } from './lib/time';
+import { isCurrentTimeBetween, isEarlierThan, isLaterThan } from './lib/time';
 
 class Timey extends Homey.App {
 
@@ -10,7 +10,7 @@ class Timey extends Homey.App {
   timeZone: string = '';
   formatter: Intl.DateTimeFormat | null = null;
 
-  HHmm = new RegExp(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/);
+  HHmm = new RegExp(/^([0-9]{1,2}):([0-9]{2})$/);
 
   /**
    * onInit is called when the app is initialized.
@@ -22,7 +22,7 @@ class Timey extends Homey.App {
       timeZone: this.timeZone,
       hour: '2-digit',
       minute: '2-digit',
-      hour12: false, // Use 24-hour format
+      hourCycle: 'h23' // Homeys' example with '12hour: false' uses 24 for midnight
     });
     this.log('Timey has been initialized');
     this.homey.setInterval(() => {
@@ -78,7 +78,7 @@ class Timey extends Homey.App {
 
   tick() {
     if (this.formatter !== null) {
-      const timeParts = this.formatter.formatToParts(new Date());
+      const timeParts = this.formatter.formatToParts(new Date()); // Always UTC
       const hour = timeParts.find(part => part.type === 'hour')?.value;
       const minute = timeParts.find(part => part.type === 'minute')?.value;
       this.currentTime = `${hour}:${minute}`;
@@ -93,3 +93,4 @@ class Timey extends Homey.App {
 }
 
 module.exports = Timey;
+export default Timey;
