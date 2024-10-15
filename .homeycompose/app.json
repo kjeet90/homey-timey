@@ -1,6 +1,6 @@
 {
   "id": "no.kjeet90.timey",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -11,8 +11,8 @@
     "no": "Timey"
   },
   "description": {
-    "en": "Timey - Use text variables in time flow cards with a 24-hour format: HH:mm",
-    "no": "Timey - Bruk tekstvariabler i tids-flower med 24-timers format: HH:mm"
+    "en": "Make your time flows dynamic with variables",
+    "no": "Gjør tids-flowene dine dynamiske med variabler"
   },
   "category": [
     "tools"
