@@ -1,1 +1,1 @@
-Bruk tekstvariabler i tids-flower med 24-timers format: HH:mm. Dette vil gjøre det mulig å endre tidspunktet én plass og det vil oppdateres i alle dine flower.
+Bruk tekstvariabler i tids-flower med 24-timers format: HH:mm eller HH.desimal. Dette vil gjøre det mulig å endre tidspunktet én plass og det vil oppdateres i alle dine flower.

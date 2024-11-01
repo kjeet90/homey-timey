@@ -8,8 +8,8 @@
     "no": "Klokken er !{{tidligere|senere}} enn [[Time]]"
   },
   "hint": {
-    "en": "24-hour format HH:mm",
-    "no": "24-timers format HH:mm"
+    "en": "24-hour format HH:mm or HH.decimal",
+    "no": "24-timers format HH:mm eller HH.desimal"
   },
   "args": [
     {

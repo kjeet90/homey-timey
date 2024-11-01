@@ -115,3 +115,41 @@ describe('isLaterThan', () => {
     })
 
 });
+
+describe('convertToHHmm', () => {
+    it('should return 10:30 when 10.5 is passed', () => {
+        expect(time.convertToHHmm('10.5')).toBe('10:30');
+    })
+
+    it('should return 10:30 when 10.50 is passed', () => {
+        expect(time.convertToHHmm('10.50')).toBe('10:30');
+    })
+
+    it('should return 22:30 when 22.5 is passed', () => {
+        expect(time.convertToHHmm('22.5')).toBe('22:30');
+    })
+
+    it('should return 22:30 when 22.50 is passed', () => {
+        expect(time.convertToHHmm('22.50')).toBe('22:30');
+    })
+
+    it('should return 2:15 when 2.25 is passed', () => {
+        expect(time.convertToHHmm('2.25')).toBe('2:15');
+    })
+
+    it('should return 2:15 when 2.25000 is passed', () => {
+        expect(time.convertToHHmm('2.25000')).toBe('2:15');
+    })
+
+    it('should return 8:45 when 8.75 is passed', () => {
+        expect(time.convertToHHmm('8.75')).toBe('8:45');
+    })
+
+    it('should return 8:45 when 8.75000000 is passed', () => {
+        expect(time.convertToHHmm('8.75000000')).toBe('8:45');
+    })
+
+    it('should return 8:42 when 8.7 is passed', () => {
+        expect(time.convertToHHmm('8.7')).toBe('8:42');
+    })
+})

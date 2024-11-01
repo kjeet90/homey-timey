@@ -60,104 +60,239 @@ describe('Timey', () => {
         expect(unit).toBeDefined();
     });
 
-
-
     describe('regex', () => {
 
-        describe('valid', () => {
-            it('should accept 00:00', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('00:00')).toBe(true);
-            })
+        describe('HH:mm', () => {
+            describe('valid', () => {
+                it('should accept 00:00', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('00:00')).toBe(true);
+                })
 
-            it('should accept 01:00', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('01:00')).toBe(true);
-            })
-            it('should accept 05:30', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('05:30')).toBe(true);
-            })
+                it('should accept 01:00', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('01:00')).toBe(true);
+                })
+                it('should accept 05:30', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('05:30')).toBe(true);
+                })
 
-            it('should accept 12:45', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('12:45')).toBe(true);
-            })
+                it('should accept 12:45', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('12:45')).toBe(true);
+                })
 
-            it('should accept 23:59', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('00:00')).toBe(true);
-            })
+                it('should accept 23:59', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('23:59')).toBe(true);
+                })
 
-            it('should accept 10:15', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('10:15')).toBe(true);
-            })
+                it('should accept 10:15', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('10:15')).toBe(true);
+                })
 
-            it('should accept 02:05', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('02:05')).toBe(true);
-            })
+                it('should accept 02:05', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('02:05')).toBe(true);
+                })
 
-            it('should accept 9:05', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('9:05')).toBe(true);
-            })
+                it('should accept 9:05', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('9:05')).toBe(true);
+                })
+            });
+
+            describe('invalid', () => {
+                it('should not accept 24:00', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('24:00')).toBe(false);
+                })
+
+                it('should not accept 12:60', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('12:60')).toBe(false);
+                })
+
+                it('should not accept 25:10', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('25:10')).toBe(false);
+                })
+
+                it('should not accept 00:61', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('00:61')).toBe(false);
+                })
+
+                it('should not accept 23:60', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('23:60')).toBe(false);
+                })
+
+                it('should not accept 01:100', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('01:100')).toBe(false);
+                })
+
+                it('should not accept ab:30', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('ab:30')).toBe(false);
+                })
+
+                it('should not accept 23:cd', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('23:cd')).toBe(false);
+                })
+
+                it('should not accept 15:45:20', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('15:45:20')).toBe(false);
+                })
+
+                it('should not accept 15:4', () => {
+                    const unit = new Timey();
+                    expect(unit.HHmm.test('15:4')).toBe(false);
+                })
+            });
         });
 
-        describe('invalid', () => {
-            it('should not accept 24:00', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('24:00')).toBe(false);
-            })
+        describe('h.m', () => {
+            describe('valid', () => {
+                it('should accept 0.0', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('0.0')).toBe(true);
+                })
 
-            it('should not accept 12:60', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('12:60')).toBe(false);
-            })
+                it('should accept 01.00', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('01.00')).toBe(true);
+                })
 
-            it('should not accept 25:10', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('25:10')).toBe(false);
-            })
+                it('should accept 05.30', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('05.30')).toBe(true);
+                })
 
-            it('should not accept 00:61', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('00:61')).toBe(false);
-            })
+                it('should accept 12.45', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('12.45')).toBe(true);
+                })
 
-            it('should not accept 23:60', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('23:60')).toBe(false);
-            })
+                it('should accept 23.59', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('23.59')).toBe(true);
+                })
 
-            it('should not accept 01:100', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('01:100')).toBe(false);
-            })
+                it('should accept 10.15', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('10.15')).toBe(true);
+                })
 
-            it('should not accept ab:30', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('ab:30')).toBe(false);
-            })
+                it('should accept 02.05', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('02.05')).toBe(true);
+                })
 
-            it('should not accept 23:cd', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('23:cd')).toBe(false);
-            })
+                it('should accept 9.05', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('9.05')).toBe(true);
+                })
 
-            it('should not accept 15:45:20', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('15:45:20')).toBe(false);
-            })
 
-            it('should not accept 15:4', () => {
-                const unit = new Timey();
-                expect(unit.HHmm.test('15:4')).toBe(false);
-            })
+                it('should accept 12.60', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('12.60')).toBe(true);
+                })
+
+                it('should accept 00.61', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('00.61')).toBe(true);
+                })
+
+                it('should not accept 23.60', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('23.60')).toBe(true);
+                })
+
+                it('should accept 01.100', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('01.100')).toBe(true);
+                })
+
+                it('should not accept 15.4', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('15.4')).toBe(true);
+                })
+
+            });
+
+            describe('invalid', () => {
+                it('should not accept 24.00', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('24.00')).toBe(false);
+                })
+
+
+                it('should not accept 25.10', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('25.10')).toBe(false);
+                })
+
+                it('should not accept ab.30', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('ab.30')).toBe(false);
+                })
+
+                it('should not accept 23.cd', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('23.cd')).toBe(false);
+                })
+
+                it('should not accept 15.45.20', () => {
+                    const unit = new Timey();
+                    expect(unit.HHdotmm.test('15.45.20')).toBe(false);
+                })
+            });
         });
 
+    });
 
+    describe('validateAndGetTime', () => {
+        it('should return 10:30 when 10:30 is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('10:30')).toBe('10:30');
+        })
+
+        it('should return 10:30 when 10.5 is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('10.5')).toBe('10:30');
+        })
+
+        it('should return 8:45 when 8.75 is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('8.75')).toBe('8:45');
+        })
+
+        it('should return 9:45 when 9.752346  is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('9.752346')).toBe('9:45');
+        })
+
+        it('should return null when 24.75 is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('24.75')).toBe(null);
+        })
+
+        it('should return null when 24:00 is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('24:00')).toBe(null);
+        })
+
+        it('should return null when 24.00 is passed', () => {
+            const unit = new Timey();
+            expect(unit.validateAndGetTime('24.00')).toBe(null);
+        })
     });
 
     // FIXME: Async testing not trusted.
