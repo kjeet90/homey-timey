@@ -4,6 +4,10 @@ A Homey app for using text variables in time flow cards with a 24-hour format: H
 
 # Changelog
 
+## 1.1.1
+
+* Bugfixes
+
 ## 1.1.0
 
 * Added support for HH.decimal format
