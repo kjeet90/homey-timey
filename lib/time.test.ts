@@ -133,23 +133,23 @@ describe('convertToHHmm', () => {
         expect(time.convertToHHmm('22.50')).toBe('22:30');
     })
 
-    it('should return 2:15 when 2.25 is passed', () => {
-        expect(time.convertToHHmm('2.25')).toBe('2:15');
+    it('should return 02:15 when 2.25 is passed', () => {
+        expect(time.convertToHHmm('2.25')).toBe('02:15');
     })
 
-    it('should return 2:15 when 2.25000 is passed', () => {
-        expect(time.convertToHHmm('2.25000')).toBe('2:15');
+    it('should return 02:15 when 2.25000 is passed', () => {
+        expect(time.convertToHHmm('2.25000')).toBe('02:15');
     })
 
-    it('should return 8:45 when 8.75 is passed', () => {
-        expect(time.convertToHHmm('8.75')).toBe('8:45');
+    it('should return 08:45 when 8.75 is passed', () => {
+        expect(time.convertToHHmm('8.75')).toBe('08:45');
     })
 
-    it('should return 8:45 when 8.75000000 is passed', () => {
-        expect(time.convertToHHmm('8.75000000')).toBe('8:45');
+    it('should return 08:45 when 8.75000000 is passed', () => {
+        expect(time.convertToHHmm('8.75000000')).toBe('08:45');
     })
 
-    it('should return 8:42 when 8.7 is passed', () => {
-        expect(time.convertToHHmm('8.7')).toBe('8:42');
+    it('should return 08:42 when 8.7 is passed', () => {
+        expect(time.convertToHHmm('8.7')).toBe('08:42');
     })
 })

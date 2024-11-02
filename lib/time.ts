@@ -38,5 +38,5 @@ export function convertToHHmm(time: string) {
     const truncated = fraction.toString().padEnd(2, '0').slice(0, 2);
     const minutes = ((Number(truncated) / 100) * 60);
 
-    return `${hours}:${minutes}`;
+    return `${hours.toString().padStart(2, '0')}:${minutes}`;
 }

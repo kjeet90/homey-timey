@@ -35,14 +35,14 @@ class Timey extends Homey.App {
 
   validateAndGetTime(timestamp: string) {
     timestamp = timestamp.trim();
-    if (timestamp.includes(':') && this.HHmm.test(timestamp)) return timestamp;
+    if (timestamp.includes(':') && this.HHmm.test(timestamp)) return timestamp.padStart(5, '0');
     else if (timestamp.includes('.') && this.HHdotmm.test(timestamp)) return convertToHHmm(timestamp);
     return null;
   }
 
   async initFlows() {
     this.homey.flow.getConditionCard('time-is-earlier-than').registerRunListener(async (args, _state) => {
-      const validatedTime = this.validateAndGetTime(args.Time);
+      const validatedTime = this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {
         this.error(`Incorrect format (${args.Time}) in condition flow card: 'time-is-earlier-than'`);
         throw this.homey.__("wrong-format", { input: args.Time });
@@ -53,8 +53,7 @@ class Timey extends Homey.App {
     })
 
     this.homey.flow.getConditionCard('time-is-later-than').registerRunListener(async (args, _state) => {
-
-      const validatedTime = this.validateAndGetTime(args.Time);
+      const validatedTime = this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {
         this.error(`Incorrect format (${args.Time}) in condition flow card: 'time-is-later-than'`);
         throw this.homey.__("wrong-format", { input: args.Time });
@@ -65,8 +64,8 @@ class Timey extends Homey.App {
     })
 
     this.homey.flow.getConditionCard('time-is-between').registerRunListener(async (args, _state) => {
-      const validatedTime1 = this.validateAndGetTime(args.Time1);
-      const validatedTime2 = this.validateAndGetTime(args.Time2);
+      const validatedTime1 = this.validateAndGetTime(args.Time1.toString());
+      const validatedTime2 = this.validateAndGetTime(args.Time2.toString());
       if (validatedTime1 === null || validatedTime2 === null) {
         const wrong = !validatedTime1 ? args.Time1 : args.Time2;
         this.error(`Incorrect format (${wrong}) in condition flow card: 'time-is-between'`);
@@ -78,7 +77,7 @@ class Timey extends Homey.App {
     })
 
     this.homey.flow.getTriggerCard('time-is').registerRunListener(async (args, _state) => {
-      const validatedTime = this.validateAndGetTime(args.Time);
+      const validatedTime = this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {
         this.error(`Incorrect format (${args.Time}) in trigger flow card: 'time-is'`);
       }
