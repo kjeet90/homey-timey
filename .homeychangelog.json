@@ -1,9 +1,12 @@
 {
+    "1.2.0": {
+        "en": "Added support for 'H' format"
+    },
     "1.1.1": {
         "en": "Bugfixes"
     },
     "1.1.0": {
-        "en": "Added support for HH.decimal format"
+        "en": "Added support for 'H.decimal' format"
     },
     "1.0.1": {
         "en": "Updated description of app"

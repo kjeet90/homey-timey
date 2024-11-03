@@ -8,8 +8,8 @@
     "no": "Klokken !{{er|er ikke}} mellom [[Time1]] og [[Time2]]"
   },
   "hint": {
-    "en": "If the second time is earlier than the first time, it's considered the next day. 24-hour format HH:mm or HH.decimal",
-    "no": "Hvis det andre tidspunktet er tidligere enn det første tidspunktet, anses det å være neste dag. 24-timers format HH:mm eller HH.desimal"
+    "en": "If the second time is earlier than the first time, it's considered the next day. 24-hour format 'H:mm', 'H.decimal' or 'H'",
+    "no": "Hvis det andre tidspunktet er tidligere enn det første tidspunktet, anses det å være neste dag. 24-timers format H:mm eller H.desimal eller H"
   },
   "args": [
     {

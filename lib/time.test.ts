@@ -116,40 +116,68 @@ describe('isLaterThan', () => {
 
 });
 
-describe('convertToHHmm', () => {
+describe('convertHmmToHHmm', () => {
+    it('should return 10:30 when 10:30 is passed', () => {
+        expect(time.convertHmmToHHmm('10:30')).toBe('10:30');
+    })
+
+    it('should return 09:30 when 9:30 is passed', () => {
+        expect(time.convertHmmToHHmm('9:30')).toBe('09:30');
+    })
+});
+
+describe('convertDecimalToHHmm', () => {
     it('should return 10:30 when 10.5 is passed', () => {
-        expect(time.convertToHHmm('10.5')).toBe('10:30');
+        expect(time.convertDecimalToHHmm('10.5')).toBe('10:30');
     })
 
     it('should return 10:30 when 10.50 is passed', () => {
-        expect(time.convertToHHmm('10.50')).toBe('10:30');
+        expect(time.convertDecimalToHHmm('10.50')).toBe('10:30');
     })
 
     it('should return 22:30 when 22.5 is passed', () => {
-        expect(time.convertToHHmm('22.5')).toBe('22:30');
+        expect(time.convertDecimalToHHmm('22.5')).toBe('22:30');
     })
 
     it('should return 22:30 when 22.50 is passed', () => {
-        expect(time.convertToHHmm('22.50')).toBe('22:30');
+        expect(time.convertDecimalToHHmm('22.50')).toBe('22:30');
     })
 
     it('should return 02:15 when 2.25 is passed', () => {
-        expect(time.convertToHHmm('2.25')).toBe('02:15');
+        expect(time.convertDecimalToHHmm('2.25')).toBe('02:15');
     })
 
     it('should return 02:15 when 2.25000 is passed', () => {
-        expect(time.convertToHHmm('2.25000')).toBe('02:15');
+        expect(time.convertDecimalToHHmm('2.25000')).toBe('02:15');
     })
 
     it('should return 08:45 when 8.75 is passed', () => {
-        expect(time.convertToHHmm('8.75')).toBe('08:45');
+        expect(time.convertDecimalToHHmm('8.75')).toBe('08:45');
     })
 
     it('should return 08:45 when 8.75000000 is passed', () => {
-        expect(time.convertToHHmm('8.75000000')).toBe('08:45');
+        expect(time.convertDecimalToHHmm('8.75000000')).toBe('08:45');
     })
 
     it('should return 08:42 when 8.7 is passed', () => {
-        expect(time.convertToHHmm('8.7')).toBe('08:42');
+        expect(time.convertDecimalToHHmm('8.7')).toBe('08:42');
     })
 })
+
+describe('convertHToHHmm', () => {
+    it('should return 10:00 when 10 is passed', () => {
+        expect(time.convertHToHHmm('10')).toBe('10:00');
+    })
+
+    it('should return 01:00 when 1 is passed', () => {
+        expect(time.convertHToHHmm('1')).toBe('01:00');
+    })
+
+    it('should return 00:00 when 0 is passed', () => {
+        expect(time.convertHToHHmm('0')).toBe('00:00');
+    })
+
+    it('should return 23:00 when 23 is passed', () => {
+        expect(time.convertHToHHmm('23')).toBe('23:00');
+    })
+});

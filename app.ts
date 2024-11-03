@@ -1,7 +1,7 @@
 'use strict';
 
 import Homey from 'homey';
-import { isCurrentTimeBetween, isEarlierThan, isLaterThan, convertToHHmm } from './lib/time';
+import { isCurrentTimeBetween, isEarlierThan, isLaterThan, convertDecimalToHHmm, convertHToHHmm, convertHmmToHHmm } from './lib/time';
 
 
 class Timey extends Homey.App {
@@ -11,8 +11,9 @@ class Timey extends Homey.App {
   timeZone: string = '';
   formatter: Intl.DateTimeFormat | null = null;
 
-  HHmm = new RegExp(/^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$/);
-  HHdotmm = new RegExp(/^(?:[01]?[0-9]|2[0-3])\.[0-9]+$/);
+  HmmRegEx = new RegExp(/^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$/);
+  HdecimalRegEx = new RegExp(/^(?:[01]?[0-9]|2[0-3])\.[0-9]+$/);
+  HRegEx = new RegExp(/^(0?[0-9]|1[0-9]|2[0-3])$/);
 
 
   /**
@@ -35,8 +36,9 @@ class Timey extends Homey.App {
 
   validateAndGetTime(timestamp: string) {
     timestamp = timestamp.trim();
-    if (timestamp.includes(':') && this.HHmm.test(timestamp)) return timestamp.padStart(5, '0');
-    else if (timestamp.includes('.') && this.HHdotmm.test(timestamp)) return convertToHHmm(timestamp);
+    if (timestamp.includes(':') && this.HmmRegEx.test(timestamp)) return convertHmmToHHmm(timestamp);
+    else if (timestamp.includes('.') && this.HdecimalRegEx.test(timestamp)) return convertDecimalToHHmm(timestamp);
+    else if (this.HRegEx.test(timestamp)) return convertHToHHmm(timestamp);
     return null;
   }
 

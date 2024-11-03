@@ -32,11 +32,20 @@ export function isLaterThan(time: string, currentTime: string) {
     return totalMinutes1 < totalMinutes2
 }
 
-export function convertToHHmm(time: string) {
+export function convertHmmToHHmm(time: string) {
+    return time.padStart(5, '0');
+}
+
+export function convertDecimalToHHmm(time: string) {
     const [hours, fraction] = time.split('.').map(Number);
 
     const truncated = fraction.toString().padEnd(2, '0').slice(0, 2);
     const minutes = ((Number(truncated) / 100) * 60);
 
     return `${hours.toString().padStart(2, '0')}:${minutes}`;
+}
+
+export function convertHToHHmm(time: string) {
+    const hour = time + ':00';
+    return hour.padStart(5, '0');
 }
