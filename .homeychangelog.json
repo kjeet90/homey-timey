@@ -1,4 +1,7 @@
 {
+    "1.3.0": {
+        "en": "Added support for BetterLogicLibrary"
+    },
     "1.2.0": {
         "en": "Added support for 'H' format"
     },

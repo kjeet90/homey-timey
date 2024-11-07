@@ -47,6 +47,18 @@ vi.mock('homey', () => {
     return { default: Homey }
 });
 
+vi.mock('betterlogiclibrary', () => {
+    const BL = {
+        init: vi.fn(),
+        decode: vi.fn().mockImplementation((arg: string) => {
+            return new Promise<string>((resolve, _reject) => {
+                resolve(arg);
+            });
+        })
+    }
+    return { BL };
+});
+
 beforeEach(() => {
     clearFlowTriggerValues();
     vi.useFakeTimers();
@@ -303,54 +315,54 @@ describe('Timey', () => {
     });
 
     describe('validateAndGetTime', () => {
-        it('should return 10:30 when 10:30 is passed', () => {
+        it('should return 10:30 when 10:30 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('10:30')).toBe('10:30');
+            expect(await unit.validateAndGetTime('10:30')).toBe('10:30');
         })
 
-        it('should return 10:30 when 10.5 is passed', () => {
+        it('should return 10:30 when 10.5 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('10.5')).toBe('10:30');
+            expect(await unit.validateAndGetTime('10.5')).toBe('10:30');
         })
 
-        it('should return 08:45 when 8.75 is passed', () => {
+        it('should return 08:45 when 8.75 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('8.75')).toBe('08:45');
+            expect(await unit.validateAndGetTime('8.75')).toBe('08:45');
         })
 
-        it('should return 08:45 when 8:45 is passed', () => {
+        it('should return 08:45 when 8:45 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('8:45')).toBe('08:45');
+            expect(await unit.validateAndGetTime('8:45')).toBe('08:45');
         })
 
-        it('should return 09:45 when 9.752346  is passed', () => {
+        it('should return 09:45 when 9.752346  is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('9.752346')).toBe('09:45');
+            expect(await unit.validateAndGetTime('9.752346')).toBe('09:45');
         })
 
-        it('should return 09:45 when 9:45  is passed', () => {
+        it('should return 09:45 when 9:45  is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('9:45')).toBe('09:45');
+            expect(await unit.validateAndGetTime('9:45')).toBe('09:45');
         })
 
-        it('should return null when 24.75 is passed', () => {
+        it('should return null when 24.75 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('24.75')).toBe(null);
+            expect(await unit.validateAndGetTime('24.75')).toBe(null);
         })
 
-        it('should return null when 24:00 is passed', () => {
+        it('should return null when 24:00 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('24:00')).toBe(null);
+            expect(await unit.validateAndGetTime('24:00')).toBe(null);
         })
 
-        it('should return null when 23:3 is passed', () => {
+        it('should return null when 23:3 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('23:3')).toBe(null);
+            expect(await unit.validateAndGetTime('23:3')).toBe(null);
         })
 
-        it('should return null when 24.00 is passed', () => {
+        it('should return null when 24.00 is passed', async () => {
             const unit = new Timey();
-            expect(unit.validateAndGetTime('24.00')).toBe(null);
+            expect(await unit.validateAndGetTime('24.00')).toBe(null);
         })
     });
 

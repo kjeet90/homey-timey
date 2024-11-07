@@ -25,6 +25,9 @@ A Homey app for using text variables in time flow cards with a 24-hour format: '
 
 # Changelog
 
+## 1.3.0
+* Added support for BetterLogicLibrary
+
 ## 1.2.0
 * Added support 'H' format
 

@@ -2,7 +2,7 @@
 
 import Homey from 'homey';
 import { isCurrentTimeBetween, isEarlierThan, isLaterThan, convertDecimalToHHmm, convertHToHHmm, convertHmmToHHmm } from './lib/time';
-
+import { BL } from 'betterlogiclibrary';
 
 class Timey extends Homey.App {
 
@@ -21,6 +21,7 @@ class Timey extends Homey.App {
    */
   async onInit() {
     await this.initFlows();
+    await BL.init({ homey: this.homey });
     this.timeZone = await this.homey.clock.getTimezone();
     this.formatter = new Intl.DateTimeFormat([], {
       timeZone: this.timeZone,
@@ -34,8 +35,10 @@ class Timey extends Homey.App {
     }, 1000);
   }
 
-  validateAndGetTime(timestamp: string) {
+  async validateAndGetTime(timestamp: string) {
     timestamp = timestamp.trim();
+    if (timestamp.startsWith('{[') && timestamp.endsWith(']}')) timestamp = await BL.decode(timestamp);
+
     if (timestamp.includes(':') && this.HmmRegEx.test(timestamp)) return convertHmmToHHmm(timestamp);
     else if (timestamp.includes('.') && this.HdecimalRegEx.test(timestamp)) return convertDecimalToHHmm(timestamp);
     else if (this.HRegEx.test(timestamp)) return convertHToHHmm(timestamp);
@@ -44,46 +47,46 @@ class Timey extends Homey.App {
 
   async initFlows() {
     this.homey.flow.getConditionCard('time-is-earlier-than').registerRunListener(async (args, _state) => {
-      const validatedTime = this.validateAndGetTime(args.Time.toString());
+      const validatedTime = await this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {
-        this.error(`Incorrect format (${args.Time}) in condition flow card: 'time-is-earlier-than'`);
+        this.error(`Incorrect format '${args.Time}' in condition flow card: 'time-is-earlier-than'`);
         throw this.homey.__("wrong-format", { input: args.Time });
       }
       const result = isEarlierThan(validatedTime, this.currentTime);
-      this.log(`Returning ${result} in time-is-earlier-than flow with time ${args.Time}(${validatedTime}) and the time is now ${this.currentTime}`);
+      this.log(`Returning ${result} in time-is-earlier-than flow with time ${args.Time} (${validatedTime}) and the time is now ${this.currentTime}`);
       return result;
     })
 
     this.homey.flow.getConditionCard('time-is-later-than').registerRunListener(async (args, _state) => {
-      const validatedTime = this.validateAndGetTime(args.Time.toString());
+      const validatedTime = await this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {
-        this.error(`Incorrect format (${args.Time}) in condition flow card: 'time-is-later-than'`);
+        this.error(`Incorrect format '${args.Time}' in condition flow card: 'time-is-later-than'`);
         throw this.homey.__("wrong-format", { input: args.Time });
       }
       const result = isLaterThan(validatedTime, this.currentTime);
-      this.log(`Returning ${result} in time-is-later-than flow with time ${args.Time}(${validatedTime}) and the time is now ${this.currentTime}`);
+      this.log(`Returning ${result} in time-is-later-than flow with time ${args.Time} (${validatedTime}) and the time is now ${this.currentTime}`);
       return result;
     })
 
     this.homey.flow.getConditionCard('time-is-between').registerRunListener(async (args, _state) => {
-      const validatedTime1 = this.validateAndGetTime(args.Time1.toString());
-      const validatedTime2 = this.validateAndGetTime(args.Time2.toString());
+      const validatedTime1 = await this.validateAndGetTime(args.Time1.toString());
+      const validatedTime2 = await this.validateAndGetTime(args.Time2.toString());
       if (validatedTime1 === null || validatedTime2 === null) {
         const wrong = !validatedTime1 ? args.Time1 : args.Time2;
-        this.error(`Incorrect format (${wrong}) in condition flow card: 'time-is-between'`);
+        this.error(`Incorrect format '${wrong}' in condition flow card: 'time-is-between'`);
         throw this.homey.__("wrong-format", { input: wrong });
       }
       const result = isCurrentTimeBetween(validatedTime1, validatedTime2, this.currentTime);
-      this.log(`Returning ${result} in time-is-between flow with time1 ${args.Time1}(${validatedTime1}), time2 ${args.Time2}(${validatedTime2}) and the time is now ${this.currentTime}`);
+      this.log(`Returning ${result} in time-is-between flow with time1 ${args.Time1}(${validatedTime1}), time2 ${args.Time2} (${validatedTime2}) and the time is now ${this.currentTime}`);
       return result;
     })
 
     this.homey.flow.getTriggerCard('time-is').registerRunListener(async (args, _state) => {
-      const validatedTime = this.validateAndGetTime(args.Time.toString());
+      const validatedTime = await this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {
-        this.error(`Incorrect format (${args.Time}) in trigger flow card: 'time-is'`);
+        this.error(`Incorrect format '${args.Time}' in trigger flow card: 'time-is'`);
       }
-      if (validatedTime === this.currentTime) this.log(`Triggering time-is flow with time ${args.Time}(${validatedTime}) since the time is now ${this.currentTime}`);
+      if (validatedTime === this.currentTime) this.log(`Triggering time-is flow with time ${args.Time} (${validatedTime}) since the time is now ${this.currentTime}`);
       return validatedTime === this.currentTime;
     });
   }
