@@ -57,6 +57,32 @@ class Timey extends Homey.App {
       return result;
     })
 
+    this.homey.flow.getConditionCard('timestamp-is-earlier-than').registerRunListener(async (args, _state) => {
+      const validatedTime1 = await this.validateAndGetTime(args.Time1.toString());
+      const validatedTime2 = await this.validateAndGetTime(args.Time2.toString());
+      if (validatedTime1 === null || validatedTime2 === null) {
+        const wrong = !validatedTime1 ? args.Time1 : args.Time2;
+        this.error(`Incorrect format '${wrong}' in condition flow card: 'timestamp-is-earlier-than'`);
+        throw this.homey.__("wrong-format", { input: wrong });
+      }
+      const result = isEarlierThan(validatedTime2, validatedTime1);
+      this.log(`Returning ${result} in timestamp-is-earlier-than flow with time1 ${args.Time1}(${validatedTime1}), time2 ${args.Time2} (${validatedTime2})`);
+      return result;
+    })
+
+    this.homey.flow.getConditionCard('timestamp-is-later-than').registerRunListener(async (args, _state) => {
+      const validatedTime1 = await this.validateAndGetTime(args.Time1.toString());
+      const validatedTime2 = await this.validateAndGetTime(args.Time2.toString());
+      if (validatedTime1 === null || validatedTime2 === null) {
+        const wrong = !validatedTime1 ? args.Time1 : args.Time2;
+        this.error(`Incorrect format '${wrong}' in condition flow card: 'timestamp-is-later-than'`);
+        throw this.homey.__("wrong-format", { input: wrong });
+      }
+      const result = isLaterThan(validatedTime2, validatedTime1);
+      this.log(`Returning ${result} in timestamp-is-later-than flow with time1 ${args.Time1}(${validatedTime1}), time2 ${args.Time2} (${validatedTime2})`);
+      return result;
+    })
+
     this.homey.flow.getConditionCard('time-is-later-than').registerRunListener(async (args, _state) => {
       const validatedTime = await this.validateAndGetTime(args.Time.toString());
       if (validatedTime === null) {

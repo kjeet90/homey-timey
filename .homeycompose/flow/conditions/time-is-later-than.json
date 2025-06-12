@@ -4,8 +4,8 @@
     "no": "Klokken er senere enn"
   },
   "titleFormatted": {
-    "en": "The time is !{{later|earlier}} than [[Time]]",
-    "no": "Klokken er !{{senere|tidligere}} enn [[Time]]"
+    "en": "The time !{{is|isn't}} later than [[Time]]",
+    "no": "Klokken !{{er|er ikke}} senere enn [[Time]]"
   },
   "hint": {
     "en": "24-hour format 'H:mm', 'H.decimal' or 'H'",

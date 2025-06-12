@@ -1,0 +1,30 @@
+{
+    "title": {
+        "en": "[[Time1]] is earlier than [[Time2]]",
+        "no": "[[Time1]] er tidligere enn [[Time2]]"
+    },
+    "titleFormatted": {
+        "en": "[[Time1]] !{{is|isn't}} earlier than [[Time2]]",
+        "no": "[[Time1]] !{{er|er ikke}} tidligere enn [[Time2]]"
+    },
+    "hint": {
+        "en": "24-hour format 'H:mm', 'H.decimal' or 'H'",
+        "no": "24-timers format 'H:mm', 'H.desimal' eller 'H'"
+    },
+    "args": [
+        {
+            "type": "text",
+            "name": "Time1",
+            "placeholder": {
+                "en": "12:00"
+            }
+        },
+        {
+            "type": "text",
+            "name": "Time2",
+            "placeholder": {
+                "en": "13:00"
+            }
+        }
+    ]
+}

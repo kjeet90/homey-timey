@@ -1,4 +1,7 @@
 {
+    "1.4.0": {
+        "en": "Added time1 is earlier/later than time2 flow cards. Fixed wording in existing earlier/later flow cards"
+    },
     "1.3.0": {
         "en": "Added support for BetterLogicLibrary"
     },
