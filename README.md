@@ -22,8 +22,26 @@ A Homey app for using text variables in time flow cards with a 24-hour format: '
 * 24.0
 * 24
 
+# Expressions
+
+You can use expressions to set the timestamp. You have two options, BLL or Homeys built in logic, but the result of the expressions needs to match the valid timestamps as mentioned above.
+
+## Better Logic Library
+You need to first have the Better Logic Library (BLL) installed: [Homey App Store](https://homey.app/en-us/app/net.i-dev.betterlogic/Better-Logic-Library/)
+
+Then wrap your expressions with brackets like this: `{[ expression ]}` and the result must match one of the valid formats mentioned above
+
+Read more about BLL here: [Community Topic](https://community.homey.app/t/app-pro-better-logic-library-for-users/71876)
+
+## Homeys built in logic
+
+Use Homeys built in expression brackets: `{{ expression }}`
 
 # Changelog
+
+## 1.4.1
+### Bugfix
+* Fixed issue where decimal to timestamp would sometimes be incorrect
 
 ## 1.4.0
 ### Feature

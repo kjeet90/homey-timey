@@ -1,4 +1,7 @@
 {
+    "1.4.1": {
+        "en": "Fixed issue where decimal to timestamp would sometimes be incorrect"
+    },
     "1.4.0": {
         "en": "Added time1 is earlier/later than time2 flow cards. Fixed wording in existing earlier/later flow cards"
     },

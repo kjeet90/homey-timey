@@ -38,7 +38,6 @@ class Timey extends Homey.App {
   async validateAndGetTime(timestamp: string) {
     timestamp = timestamp.trim();
     if (timestamp.startsWith('{[') && timestamp.endsWith(']}')) timestamp = await BL.decode(timestamp);
-
     if (timestamp.includes(':') && this.HmmRegEx.test(timestamp)) return convertHmmToHHmm(timestamp);
     else if (timestamp.includes('.') && this.HdecimalRegEx.test(timestamp)) return convertDecimalToHHmm(timestamp);
     else if (this.HRegEx.test(timestamp)) return convertHToHHmm(timestamp);

@@ -40,9 +40,9 @@ export function convertDecimalToHHmm(time: string) {
     const [hours, fraction] = time.split('.').map(Number);
 
     const truncated = fraction.toString().padEnd(2, '0').slice(0, 2);
-    const minutes = ((Number(truncated) / 100) * 60);
+    const minutes = Math.round(((Number(truncated) / 100) * 60));
 
-    return `${hours.toString().padStart(2, '0')}:${minutes}`;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
 export function convertHToHHmm(time: string) {

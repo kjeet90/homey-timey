@@ -162,6 +162,14 @@ describe('convertDecimalToHHmm', () => {
     it('should return 08:42 when 8.7 is passed', () => {
         expect(time.convertDecimalToHHmm('8.7')).toBe('08:42');
     })
+
+    it('should return 14:07 when 14.11 is passed', () => {
+        expect(time.convertDecimalToHHmm('14.11')).toBe('14:07');
+    })
+
+    it('should return 14:12 when 14.02 is passed', () => {
+        expect(time.convertDecimalToHHmm('14.02')).toBe('14:12');
+    })
 })
 
 describe('convertHToHHmm', () => {
